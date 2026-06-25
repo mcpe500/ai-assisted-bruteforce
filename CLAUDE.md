@@ -1,12 +1,34 @@
 # Claude Code Instructions
 
-Read and follow `AGENTS.md`.
+Read and follow `AGENTS.md` and `INSTRUCTIONS.md`.
 
-This repository uses `AGENTS.md` as the canonical instruction file for AI coding agents.
+This repository uses `AGENTS.md` as the canonical instruction file and `INSTRUCTIONS.md` as the orchestration protocol.
 
 This project is an **AI-assisted research, simulation, and bounded brute-force exploration framework**. The word "bruteforce" means systematic bounded exploration, not unauthorized attacks.
 
-Do not execute any task until:
+## Single-shot invocation
+
+When the user writes:
+
+```text
+@AGENTS.md
+@INSTRUCTIONS.md
+
+TASK: <task description>
+```
+
+Follow the full orchestration protocol in `INSTRUCTIONS.md`:
+
+1. Parse the task and generate a task id.
+2. Classify the task mode.
+3. Create a task file under `tasks/generated/`.
+4. Create a run workspace under `runs/<timestamp>-<task_id>/`.
+5. Create DASHBOARD.md, PROGRESS.md, DECISIONS.md, PLAN.md.
+6. Execute safe steps.
+7. Validate outputs.
+8. Produce RESULT.md and NEXT-STEPS.md.
+
+For non-orchestrated tasks, do not execute until:
 
 1. The task file is present under `tasks/`.
 2. The task mode is classified.
@@ -22,9 +44,11 @@ knowledge/      - Papers, concepts, equations, algorithms, glossary
 simulator/      - Physics models (models/), Three.js renderer (threejs/), validation (validation/)
 experiments/    - Experiment definitions and results
 tasks/          - Task files with required YAML fields
+tasks/generated/ - Auto-generated task files from orchestrator
 prompts/        - Role-specific prompts for agent behaviors
 policies/       - Research ethics, copyright, allowed use
-runs/           - Per-task output (plans, logs, results)
+runs/           - Per-task output (dashboards, plans, logs, results)
+docs/           - UI/UX specs, architecture docs, implementation notes
 ```
 
 ## Research rules
@@ -42,4 +66,4 @@ runs/           - Per-task output (plans, logs, results)
 
 ## If conflict
 
-If there is any conflict between this file and `AGENTS.md`, follow the safer instruction.
+If there is any conflict between this file, `AGENTS.md`, and `INSTRUCTIONS.md`, follow the safest instruction.

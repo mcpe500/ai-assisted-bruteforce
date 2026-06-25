@@ -329,6 +329,32 @@ Runs bounded brute-force/search tasks.
 
 Compares outputs against validation criteria.
 
+## Single-shot orchestration
+
+This repo supports single-shot invocation via `INSTRUCTIONS.md`.
+
+When the user writes:
+
+```text
+@AGENTS.md
+@INSTRUCTIONS.md
+
+TASK: <task description>
+```
+
+You must automatically:
+
+1. Parse the task and generate a task id.
+2. Classify the task mode.
+3. Create a task file under `tasks/generated/`.
+4. Create a run workspace under `runs/<timestamp>-<task_id>/`.
+5. Create DASHBOARD.md, PROGRESS.md, DECISIONS.md, PLAN.md.
+6. Execute safe steps.
+7. Validate outputs.
+8. Produce RESULT.md and NEXT-STEPS.md.
+
+Read `INSTRUCTIONS.md` for the full orchestration protocol, dashboard format, decision log format, and all requirements.
+
 ## Default behavior
 
 When the user gives a broad idea:

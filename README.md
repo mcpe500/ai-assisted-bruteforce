@@ -446,6 +446,30 @@ This project is not allowed for:
 * Data exfiltration
 * Attacking third-party systems without written authorization
 
+## Quick start
+
+The fastest way to use this framework:
+
+```text
+@AGENTS.md
+@INSTRUCTIONS.md
+
+TASK: bikin light-based computing simulator pake Three.js, ada laser, mirror, detector, terus AI cari konfigurasi pantulan terbaik
+```
+
+The agent will automatically:
+
+1. Create a task file under `tasks/generated/`
+2. Create a run workspace with DASHBOARD.md, PLAN.md, DECISIONS.md, PROGRESS.md
+3. Classify the task mode (research, simulation_design, threejs_build, experiment_search)
+4. Plan the work
+5. Execute safe steps
+6. Show progress and decisions
+7. Validate results
+8. Produce a final report
+
+Inspect progress anytime by opening `runs/<run_id>/DASHBOARD.md`.
+
 ## Project philosophy
 
 The goal is not to make an AI that blindly runs commands.
